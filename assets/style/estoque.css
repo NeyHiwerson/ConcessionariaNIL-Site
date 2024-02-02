@@ -1,3 +1,11 @@
 .custom-smaller-text {
-    font-size: 0.7rem;
+    font-size: 0.55rem;
   }
+
+/* Estilo para telas menores que 330 pixels */
+@media (0 < width < 420px) {
+  .custom-col {
+      width: 100%; /* Ocupa a largura total da tela */
+      margin-bottom: 10px; /* Adapte conforme necessário */
+  }
+}
