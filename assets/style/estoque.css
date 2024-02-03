@@ -3,9 +3,10 @@
   }
 
 /* Estilo para telas menores que 330 pixels */
-@media (0 < width < 420px) {
+@media (max-width: 576px) {
   .custom-col {
-      width: 100%; /* Ocupa a largura total da tela */
-      margin-bottom: 10px; /* Adapte conforme necessário */
+      width: 100%; /* Ocupa a largura total da tela */  
+      margin: 0 auto;    
+      margin-bottom: 0.1em; /* Adapte conforme necessário */
   }
 }

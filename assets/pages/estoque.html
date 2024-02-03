@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <!-- Filtros (3 colunas fixas) -->
-            <div class="custom-col col-xs-5 col-sm-4 col-md-3 col-lg-3 col-xl-3">
+            <div class="custom-col col-xs-3 col-sm-4 col-md-4 col-lg-3 col-xl-3 pt-2">
                 <div class="card text-white bg-light mb-3 filtro" style="max-width: 18rem;">
                     <div class="card-header custom-smaller-text px-2" style="color: #000000;">Selecione o filtro de busca</div>
                     <div class="card-body px-2">
@@ -67,7 +67,7 @@
 
                         <!-- Filtro de ano -->
                         <h6 class="text-dark custom-smaller-text pt-2 mb-0">Filtro de Ano</h6>
-                        <form>
+                        <form id="formAno">
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <label for="anoInicial" class="text-dark custom-smaller-text">Ano Inicial</label>
@@ -87,7 +87,7 @@
 
                         <!-- Entrada de valores mínimo e máximo, sendo o mínimo 22000 e o máximo 200000 -->
                         <h6 class="text-dark custom-smaller-text pt-0 mb-0">Valor</h6>
-                        <form>
+                        <form id="formValor">
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <label for="valorMinimo" class="text-dark custom-smaller-text">Valor Mínimo</label>
@@ -111,7 +111,7 @@
                         
                         <!-- Filtro de quilometragem -->
                         <h6 class="text-dark custom-smaller-text pt-0 mb-0">Filtro de Quilometragem</h6>
-                        <form>
+                        <form id="formKm">
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <label for="kmMinimo" class="text-dark custom-smaller-text">Mínimo</label>
@@ -154,9 +154,9 @@
             </div>
     
             <!-- Cards dos veículos (9 colunas) -->
-            <div class="custom-col col-xs-7 col-sm-8 col-md-9 col-lg-9 col-xl-9 ">
+            <div class="custom-col col-xs-9 col-sm-8 col-md-8 col-lg-9 col-xl-9 ">
                 <div class="row veiculos">
-                    <div class="col-lg-4 pt-2 px-1">
+                    <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -166,7 +166,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 pt-2 px-1">
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -175,36 +175,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 pt-2 px-1">
-                        <div class="card h-100">
-                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Repita este bloco conforme necessário -->
-                    <div class="col-lg-4 pt-2 px-1">
-                        <div class="card h-100">
-                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-4 pt-2 px-1">
-                        <div class="card h-100">
-                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 pt-2 px-1">
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -214,17 +185,8 @@
                         </div>
                     </div>
                     <!-- Repita este bloco conforme necessário -->
-                    <div class="col-lg-4 pt-2 px-1">
-                        <div class="card h-100">
-                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
                     
-                    <div class="col-lg-4 pt-2 px-1">
+                    <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -233,7 +195,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 pt-2 px-1">
+
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
+                        <div class="card h-100">
+                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -244,7 +216,7 @@
                     </div>
                     <!-- Repita este bloco conforme necessário -->
 
-                    <div class="col-lg-4 pt-2 px-1">
+                    <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -253,8 +225,8 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-4 pt-2 px-1">
+
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -263,7 +235,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 pt-2 px-1">
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
+                        <div class="card h-100">
+                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repita este bloco conforme necessário -->
+
+                    <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
+                        <div class="card h-100">
+                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
+                        <div class="card h-100">
+                            <img src="../images/carro.jpeg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -277,8 +279,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div>    
+
     <!-- 
         Extra Small (xs): Menos de 576 pixels de largura
         Small (sm): 576 pixels ou mais
