@@ -12,6 +12,7 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/estoque.css">
     
   </head>
@@ -43,11 +44,11 @@
                         <h6 class="text-dark custom-smaller-text pt-2 mb-0">Veículo</h6>
                         <!-- <input class="form-check-input form-check-input-sm" type="checkbox" id="ckbNovo" value="option1"> -->
                         <div class="form-check form-check-inline text-dark custom-smaller-text ">                            
-                            <input class="form-check-input form-check-input-sm" type="checkbox" id="ckbNovo" value="option1">
+                            <input class="form-check-input form-check-input-sm" type="checkbox" id="ckbNovo" value="option1" checked>
                             <label class="form-check-label" for="ckbNovo">Novo</label>
                         </div>
                         <div class="form-check form-check-inline text-dark custom-smaller-text pt-2">
-                            <input class="form-check-input form-check-input-sm" type="checkbox" id="ckbUsado" value="option2">
+                            <input class="form-check-input form-check-input-sm" type="checkbox" id="ckbUsado" value="option2" checked>
                             <label class="form-check-label" for="ckbUsado">Usado</label>
                         </div>                        
 
@@ -58,6 +59,7 @@
                             id="ddbMarca" data-toggle="dropdown" aria-haspopup="true" 
                             aria-expanded="false">Todas</button>                              
                             <div class="dropdown-menu" aria-labelledby="ddbMarca">
+                            <a class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text" href="#" data-value="Todas">Todas</a>
                             <a class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text" href="#" data-value="Nissan">Nissan</a>
                             <a class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text" href="#" data-value="Tesla">Tesla</a>
                             <a class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text" href="#" data-value="Fiat">Fiat</a>                              
@@ -71,7 +73,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-5">
                                     <label for="anoInicial" class="text-dark custom-smaller-text">Ano Inicial</label>
-                                    <input type="number" class="form-control form-control-sm custom-smaller-text" id="anoInicial" min="2000" max="2024" value="2000">
+                                    <input type="number" class="form-control form-control-sm custom-smaller-text" id="anoInicial" min="2010" max="2024" value="2010">
                                 </div>
                                 
                                 <div class="col-md-2 d-flex align-items-center">
@@ -80,7 +82,7 @@
                                 
                                 <div class="form-group col-md-5">
                                     <label for="anoFinal" class="text-dark custom-smaller-text">Ano Final</label>
-                                    <input type="number" class="form-control form-control-sm custom-smaller-text" id="anoFinal" min="2000" max="2024" value="2024">
+                                    <input type="number" class="form-control form-control-sm custom-smaller-text" id="anoFinal" min="2010" max="2024" value="2024">
                                 </div>
                             </div>
                         </form>
@@ -160,8 +162,21 @@
                         <div class="card h-100">
                             <img src="../images/carro.jpeg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <h6 class="card-title ">CarNome</h6>
+                                <span class="card-text potencia small">2.0</span>
+                                <span class="card-text valvulas small">16v</span>
+                                <span class="card-text motor small">TurboFlex</span>
+                                <span class="card-text cambio small">Automático</span>
+                                <p class="card-text valor medium pt-3 mb-1">Valor: R$450'000,00</p>
+                                <p class="card-text anoModelo small">2023/2023</p>
+                                <p class="card-text text-right quilometragem">125.000</p>
+                                <div class="container text-center">
+                                    <button type="button" class="btn btn-primary btn-sm custom-smaller-text" onclick="veiculoMaisInformacoes()">Mais informações</button>
+                                </div>
+                                <hr class="my-3"> <!-- Linha separadora -->
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span class="card-text cidadeDoVeiculo small">Joinville</span>
+                                <span class="card-text estadoDoVeiculo small">SC</span>
                             </div>
                         </div>
                     </div>

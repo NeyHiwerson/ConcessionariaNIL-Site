@@ -1,160 +1,89 @@
-var tipoDeVeiculo;
-var veiculoNovo;
-var veiculoUsado;
-var marcaDoVeiculo;
-var anoInicial;
-var anoFinal;
-var valorMinimo;
-var valorMaximo;
-var kmMinima;
-var kmMaxima;
-var corVeiculo;
+var tipoDeVeiculo = "Todos";
+var veiculoNovo = true;
+var veiculoUsado = true;
+var marcaDoVeiculo = "Todas";
+var anoInicial = 2010;
+var anoFinal = 2024;
+var valorMinimo = 20000;//buscar o menor valor no banco
+var valorMaximo = 250000;//buscar o maior valor no banco
+var kmMinima = 0;
+var kmMaxima = 500000;
+var corVeiculo = "Todas";
 
-$(document).ready(function(){
-    $(".ddpItemTipoDeVeiculo").click(function(){
-        var selectedOptionTipoDeVeiculo = $(this).data("value");
-        $("#ddbTipoDeVeiculo").html(selectedOptionTipoDeVeiculo);
-        tipoDeVeiculo = selectedOptionTipoDeVeiculo;
+$(document).ready(function () {
+    $(".ddpItemTipoDeVeiculo").click(function () {
+        atualizarValor("#ddbTipoDeVeiculo", tipoDeVeiculo, $(this).data("value"));
+        tipoDeVeiculo = $(this).data("value");
+        //console.log("Tipo de Veículo:", tipoDeVeiculo);
+        filtroDeBusca();
     });
-});
-/* evento do ckbNovo */
-var meuCheckBoxNovo = document.getElementById('ckbNovo');
-    
-if (meuCheckBoxNovo) {
-    meuCheckBoxNovo.addEventListener("change", function() {
-        // Verifica se o checkbox está marcado ou desmarcado
-        if (meuCheckBoxNovo.checked) {
-            veiculoNovo = true;
-            console.log("Checkbox Novo marcado");
-            // Adicione o código que deseja executar quando o checkbox é marcado aqui
-        } else {
-            veiculoNovo = false;
-            console.log("Checkbox Novo desmarcado");
-            // Adicione o código que deseja executar quando o checkbox é desmarcado aqui
-        }
+
+    $("#ckbNovo, #ckbUsado").change(function () {
+        veiculoNovo = $("#ckbNovo").prop("checked");
+        veiculoUsado = $("#ckbUsado").prop("checked");
+        //console.log("Checkbox Novo " + (veiculoNovo ? "Marcado" : "Desmarcado"));
+        //console.log(veiculoNovo)
+        //console.log("Checkbox Novo " + (veiculoUsado ? "Marcado" : "Desmarcado"));
+        //console.log(veiculoUsado)
+        filtroDeBusca();
     });
-}
 
-/* evento do ckbUsado */
-var meuCheckBoxUsado = document.getElementById('ckbUsado');
-    
-if (meuCheckBoxUsado) {
-    meuCheckBoxUsado.addEventListener("change", function() {
-        // Verifica se o checkbox está marcado ou desmarcado
-        if (meuCheckBoxUsado.checked) {
-            veiculoUsado = true;
-            console.log("Checkbox Usado marcado");
-            // Adicione o código que deseja executar quando o checkbox é marcado aqui
-        } else {
-            veiculoUsado = false;
-            console.log("Checkbox Usado desmarcado");
-            // Adicione o código que deseja executar quando o checkbox é desmarcado aqui
-        }
+    $(".ddpItemMarcaDoVeiculo").click(function () {
+        atualizarValor("#ddbMarca", marcaDoVeiculo, $(this).data("value"));
+        marcaDoVeiculo = $(this).data("value");
+        //console.log("Marca do Veículo:", marcaDoVeiculo);
+        filtroDeBusca();
     });
-}
 
-$(document).ready(function(){
-    $(".ddpItemMarcaDoVeiculo").click(function(){
-        var selectedOptionMarcaDoVeiculo = $(this).data("value");
-        $("#ddbMarca").html(selectedOptionMarcaDoVeiculo);
-        marcaDoVeiculo = selectedOptionMarcaDoVeiculo;
-    });
-});
+    $("#anoInicial, #anoFinal").on("input", capturarValoresAno);
 
-/* ano inicial e final */
-var formAno = document.getElementById("formAno");
-
-if (formAno) {
-    formAno.addEventListener("click", function(event) {
-        // Impede o envio padrão do formulário
+    $("#formValor").submit(function (event) {
         event.preventDefault();
+        capturarValores();
+    });    
 
-        // Obtém os valores dos campos
-        anoInicial = document.getElementById("anoInicial").value;
-        anoFinal = document.getElementById("anoFinal").value;
-
-        // Adicione o código que deseja executar com os valores dos anos aqui
-        console.log("Ano Inicial:", anoInicial);
-        console.log("Ano Final:", anoFinal);
-    });
-}
-
-/* valorMinimo e valorMaximo */
-var formValor = document.getElementById("formValor");
-var inputValorMinimo = document.getElementById("valorMinimo");
-var inputValorMaximo = document.getElementById("valorMaximo");
-
-if (formValor && inputValorMinimo && inputValorMaximo) {
-    // Ouve o evento de envio do formulário para evitar o envio padrão
-    formValor.addEventListener("submit", function(event) {
-        event.preventDefault();
+    $("#valorMinimo, #valorMaximo").on("input", function () {
+        formatarMoeda(this);
         capturarValores();
     });
 
-    // Ouve o evento de mudança de foco nos campos de entrada
-    inputValorMinimo.addEventListener("blur", capturarValores);
-    inputValorMaximo.addEventListener("blur", capturarValores);
-
-    // Ouve o evento de pressionar Enter nos campos de entrada
-    inputValorMinimo.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            capturarValores();
-        }
-    });
-
-    inputValorMaximo.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            capturarValores();
-        }
-    });
-}
-
-function capturarValores() {
-    // Obtém os valores dos campos de entrada
-    valorMinimo = inputValorMinimo.value;
-    valorMaximo = inputValorMaximo.value;
-
-    // Adicione o código que deseja executar com os valores mínimos e máximos aqui
-    console.log("Valor Mínimo:", valorMinimo);
-    console.log("Valor Máximo:", valorMaximo);
-}
-
-/* filtro de quilometragem */
-var formKm = document.getElementById("formKm");
-var inputKmMinimo = document.getElementById("kmMinimo");
-var inputKmMaximo = document.getElementById("kmMaximo");
-
-if (formKm && inputKmMinimo && inputKmMaximo) {
-    // Ouve o evento de envio do formulário para evitar o envio padrão
-    formKm.addEventListener("submit", function(event) {
+    $("#formKm").submit(function (event) {
         event.preventDefault();
         capturarValoresKm();
     });
 
-    // Ouve o evento de mudança nos campos de entrada de quilometragem
-    inputKmMinimo.addEventListener("input", capturarValoresKm);
-    inputKmMaximo.addEventListener("input", capturarValoresKm);
-}
+    $("#kmMinimo, #kmMaximo").on("input", capturarValoresKm);
 
-function capturarValoresKm() {
-    // Obtém os valores dos campos de entrada de quilometragem
-    kmMinima = inputKmMinimo.value;
-    kmMaxima = inputKmMaximo.value;
-
-    // Adicione o código que deseja executar com os valores de quilometragem mínima e máxima aqui
-    console.log("Quilometragem Mínima:", kmMinima);
-    console.log("Quilometragem Máxima:", kmMaxima);
-}
-
-/* captura da cor do veiculo */
-$(document).ready(function(){
-    $(".ddpItemCor").click(function(){
-        var selectedOptionItemCor = $(this).data("value");
-        $("#ddbCor").html(selectedOptionItemCor);
-        corVeiculo = selectedOptionItemCor;
+    $(".ddpItemCor").click(function () {
+        event.preventDefault();
+        atualizarValor("#ddbCor", corVeiculo, $(this).data("value"));
+        corVeiculo = $(this).data("value");
+        //console.log("Cor do Veículo:", corVeiculo);
+        filtroDeBusca();
     });
 });
 
+function atualizarValor(elementoID, variavel, valor) {
+    $(elementoID).html(valor);
+    variavel = valor;
+}
+
+function capturarValoresAno() {
+    anoInicial = $("#anoInicial").val();
+    anoFinal = $("#anoFinal").val();
+    filtroDeBusca();    
+}
+
+function capturarValores() {
+    // Obtenha os valores brutos (sem formatação) dos campos
+    var valorMinimoRaw = $("#valorMinimo").val().replace(/\D/g, '');
+    var valorMaximoRaw = $("#valorMaximo").val().replace(/\D/g, '');
+
+    // Converta os valores brutos para números
+    valorMinimo = parseFloat(valorMinimoRaw) / 100;
+    valorMaximo = parseFloat(valorMaximoRaw) / 100;
+    filtroDeBusca();
+}
 
 function formatarMoeda(input) {
     var valor = input.value.replace(/\D/g, '');
@@ -162,32 +91,33 @@ function formatarMoeda(input) {
     input.value = new Intl.NumberFormat('pt-BR', options).format(valor / 100);
 }
 
+function capturarValoresKm() {
+    kmMinima = $("#kmMinimo").val();
+    kmMaxima = $("#kmMaximo").val();    
+    filtroDeBusca();
+}
 
 // Função para limpar os filtros
 function limparFiltros() {
-    // Clear Tipo de Veiculo dropdown
-    document.getElementById('ddbTipoDeVeiculo').innerText = 'Todos';
-
-    // Clear checkboxes for Veiculo (Novo and Usado)
-    document.getElementById('ckbNovo').checked = false;
-    document.getElementById('ckbUsado').checked = false;
-
-    // Clear Marca dropdown
-    document.getElementById('ddbMarca').innerText = 'Todas';
-
-    // Clear Filtro de Ano inputs
-    document.getElementById('anoInicial').value = '2000';
-    document.getElementById('anoFinal').value = '2024';
-
-    // Clear Valor inputs
-    document.getElementById('valorMinimo').value = '';
-    document.getElementById('valorMaximo').value = '';
-
-    // Clear Filtro de Quilometragem inputs
-    document.getElementById('kmMinimo').value = '0';
-    document.getElementById('kmMaximo').value = '80000';
-
-    // Clear Cor dropdown
-    document.getElementById('ddbCor').innerText = 'Todas as Cores';
+    $("#ddbTipoDeVeiculo").text("Todos");
+    tipoDeVeiculo = "Todos";
+    filtroDeBusca();
 }
 
+function filtroDeBusca() {
+    var filtros = {
+        tipoDeVeiculo: tipoDeVeiculo,
+        veiculoNovo: veiculoNovo,
+        veiculoUsado: veiculoUsado,
+        marcaDoVeiculo: marcaDoVeiculo,
+        anoInicial: anoInicial,
+        anoFinal: anoFinal,
+        valorMinimo: valorMinimo,
+        valorMaximo: valorMaximo,
+        kmMinima: kmMinima,
+        kmMaxima: kmMaxima,
+        corVeiculo: corVeiculo
+    };
+
+    console.log(filtros);
+}
