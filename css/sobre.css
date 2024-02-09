@@ -1,0 +1,88 @@
+
+ * {
+    font-family: 'Lato', sans-serif;
+    
+}
+
+span {
+    color: red;
+}
+
+.NIL {
+    font-weight: 700;
+}
+
+.conheca {
+    font-weight: 300;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.sobre {
+    text-align: center;
+}
+
+.container.total {
+    display: flex;
+    flex-direction: column;
+}
+
+.container.corpo {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.conteudo {
+    
+    flex: 1;
+}
+
+.custom-smaller-text{
+    font-size: 1rem;
+}
+
+.custom-small-text{
+    font-size: 1.2rem;
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+#valores {
+    margin-bottom: 12px;
+    max-width: 40px;
+}
+
+#missao {
+    margin-bottom: 12px;
+    max-width: 40px;
+}
+
+#visao {
+    margin-bottom: 12px;
+    max-width: 40px;
+}
+
+.containe-imagem {
+    max-width: 100%;
+    text-align: right;
+    position: relative;
+}
+
+.containe-imagem img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-50%, 0);
+}
+
+h3 {
+    font-size: small;
+}
+ 
