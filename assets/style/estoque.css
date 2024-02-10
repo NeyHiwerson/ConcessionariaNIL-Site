@@ -1,6 +1,14 @@
 .custom-smaller-text {
-    font-size: 0.55rem;
+    font-size: 0.8rem;
   }
+
+.custom-small-text {
+  font-size: 1rem;
+}
+
+.custom-medium-text {
+  font-size: 1.2rem;
+}
 
 /* Estilo para telas menores que 330 pixels */
 @media (max-width: 576px) {
