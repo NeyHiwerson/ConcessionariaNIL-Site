@@ -13,12 +13,37 @@ const veiculosPorPagina = 12;
 var paginaAtual = 1;
 var veiculos = [];
 var veiculosFiltrados = [];
+var veiculosFiltrados1 = [];
+var veiculosFiltrados2 = [];
+var veiculosFiltrados3 = [];
+var marcas = []
 const urlLocal = "http://localhost:3000";
 const complemento = "/estoque";
 
 $(document).ready(async function () {
+    // Consumir a API usando jQuery
+    try {
+        // Use o await para aguardar a conclusão da requisição AJAX
+        const data = await $.ajax({
+            url: urlLocal + complemento,
+            type: "GET",
+            dataType: "json"
+        });
+
+        // Certifique-se de que 'data' é um array
+        if (Array.isArray(data)) {
+            // Adicione os dados da API ao array 'veiculos'
+            veiculos = data;
+        } else {
+            console.error("Os dados da API não são um array.");
+        }
+        } catch (error) {
+        console.error("Erro na requisição da API:", error.statusText);
+        }
+
+
     $(".ddpItemTipoDeVeiculo").click(function () {
-        atualizarValor("#ddbTipoDeVeiculo", tipoDeVeiculo, $(this).data("value"));
+        atualizarValorTipoDeVeiculo("#ddbTipoDeVeiculo", tipoDeVeiculo, $(this).data("value"));
         tipoDeVeiculo = $(this).data("value");
         filtroDeBusca();
     });
@@ -61,28 +86,14 @@ $(document).ready(async function () {
         filtroDeBusca();
     });
 
-    // Consumir a API usando jQuery
-    try {
-        // Use o await para aguardar a conclusão da requisição AJAX
-        const data = await $.ajax({
-            url: urlLocal + complemento,
-            type: "GET",
-            dataType: "json"
-        });
-
-        // Certifique-se de que 'data' é um array
-        if (Array.isArray(data)) {
-            // Adicione os dados da API ao array 'veiculos'
-            veiculos = data;
-        } else {
-            console.error("Os dados da API não são um array.");
-        }
-        } catch (error) {
-        console.error("Erro na requisição da API:", error.statusText);
-        }
 
     renderVeiculos(veiculos);
 });
+
+function atualizarValorTipoDeVeiculo(elementoID, variavel, valor) {
+    $(elementoID).html(valor);
+    variavel = valor;
+}
 
 function atualizarValor(elementoID, variavel, valor) {
     $(elementoID).html(valor);
@@ -160,9 +171,6 @@ function filtroDeBusca() {
         kmMaxima: kmMaxima,
         corVeiculo: corVeiculo
     };
-
-    console.log(filtros);
-    console.log(veiculos);
     // Filtrar os veículos com base nos filtros
 
     //filtro tipo de veiculo
@@ -176,18 +184,71 @@ function filtroDeBusca() {
         });
     }
 
-    //filtro veiculo novo
-    if (!veiculoNovo) {
+    //filtro veiculo novo e usado
+    if (veiculoNovo && veiculoUsado) {
         // Filtrar por tipo
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem >= 0;
+        });
+    }else if(veiculoNovo && !veiculoUsado){
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem == 0;
+        });
+    }else if(!veiculoNovo && veiculoUsado){
         veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
             return veiculo.quilometragem > 0;
         });
+    }else{
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem < 0;
+        });
     }
 
-    // Exibir os veículos filtrados
-    console.log(veiculosFiltrados);
+    //neste ponto eu preciso filtrar as marcas e inserir as opçoes no dropdown
+    var marcasUnicas = ['Todas',...new Set(veiculosFiltrados.map(veiculo => veiculo.marca))];
+    var dropdownMarca = $("#dropdownItensMenu");
+    dropdownMarca.html('');
+    marcasUnicas.forEach(function (marca) {
+        var option = $('<a>', {
+          class: "dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text",
+          href: "#",
+          "data-value": marca,
+          text: marca
+        });
 
-    renderVeiculos(veiculosFiltrados);
+        dropdownMarca.append(option);
+      });
+
+      dropdownMarca.find(".ddpItemMarcaDoVeiculo").click(function () {
+        var marcaSelecionada = $(this).data("value");
+        $("#ddbMarca").text(marcaSelecionada);
+        marcaDoVeiculo = marcaSelecionada;
+        filtroDeBusca();
+      });
+
+    //filtro de marca de veiculo
+    if (marcaDoVeiculo == "Todas") {
+        veiculosFiltrados1 = [...veiculosFiltrados];
+    }else{
+        veiculosFiltrados1 = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.marca.toLowerCase() == marcaDoVeiculo.toLowerCase();
+        });
+    }
+
+    //filtro de ano de fabricação
+    veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
+        return veiculo.ano_fabricacao >= anoInicial && veiculo.ano_fabricacao <= anoFinal;
+    });
+    
+
+
+
+
+
+    // Exibir os veículos filtrados
+    console.log(veiculosFiltrados1);
+
+    renderVeiculos(veiculosFiltrados1);
 
 }
 
@@ -205,7 +266,7 @@ function renderVeiculos(veiculos) {
             <div class="card h-100">
                 <img src="${element.link_1}" class="card-img-top" alt="imagem do ">
                 <div class="card-body">
-                    <h5 class="card-title">${element.nome}</h5>
+                    <h5 class="card-title">${element.modelo}</h5>
                     <span class="card-text potencia custom-small-text">${element.motor}</span>
                     <span class="card-text motor custom-small-text">${element.valvulas}</span>
                     <span class="card-text cambio custom-small-text">${element.combustivel}</span>
