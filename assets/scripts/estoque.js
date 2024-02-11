@@ -4,7 +4,7 @@ var veiculoUsado = true;
 var marcaDoVeiculo = "Todas";
 var anoInicial = 2010;
 var anoFinal = 2024;
-var valorMinimo = 20000;//buscar o menor valor no banco
+var valorMinimo = 10000;//buscar o menor valor no banco
 var valorMaximo = 250000;//buscar o maior valor no banco
 var kmMinima = 0;
 var kmMaxima = 500000;
@@ -237,10 +237,10 @@ function filtroDeBusca() {
 
     //filtro de ano de fabricação
     veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
-        return veiculo.ano_fabricacao >= anoInicial && veiculo.ano_fabricacao <= anoFinal;
+        return veiculo.ano_modelo >= anoInicial && veiculo.ano_modelo <= anoFinal;
     });
 
-    //filtro de valor minimo e maximo
+     //filtro de valor minimo e maximo
     veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
         return veiculo.valor >= valorMinimo && veiculo.valor <= valorMaximo;
     });
