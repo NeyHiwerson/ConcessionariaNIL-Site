@@ -12,6 +12,7 @@ var corVeiculo = "Todas";
 const veiculosPorPagina = 12;
 var paginaAtual = 1;
 var veiculos = [];
+var veiculosFiltrados = [];
 const urlLocal = "http://localhost:3000";
 const complemento = "/estoque";
 
@@ -73,15 +74,12 @@ $(document).ready(async function () {
         if (Array.isArray(data)) {
             // Adicione os dados da API ao array 'veiculos'
             veiculos = data;
-            console.log(veiculos);
         } else {
             console.error("Os dados da API não são um array.");
         }
         } catch (error) {
         console.error("Erro na requisição da API:", error.statusText);
         }
-
-    console.log(veiculos);
 
     renderVeiculos(veiculos);
 });
@@ -164,6 +162,33 @@ function filtroDeBusca() {
     };
 
     console.log(filtros);
+    console.log(veiculos);
+    // Filtrar os veículos com base nos filtros
+
+    //filtro tipo de veiculo
+    if (tipoDeVeiculo === "Todos") {
+        // Se "todos" for selecionado, retornar todos os veículos
+        veiculosFiltrados = veiculos;
+    } else {
+        // Filtrar por tipo
+        veiculosFiltrados = veiculos.filter(function(veiculo) {
+            return veiculo.tipo == tipoDeVeiculo.toLowerCase();
+        });
+    }
+
+    //filtro veiculo novo
+    if (!veiculoNovo) {
+        // Filtrar por tipo
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem > 0;
+        });
+    }
+
+    // Exibir os veículos filtrados
+    console.log(veiculosFiltrados);
+
+    renderVeiculos(veiculosFiltrados);
+
 }
 
 function renderVeiculos(veiculos) {
@@ -189,7 +214,7 @@ function renderVeiculos(veiculos) {
                     <span class="card-text anoModelo custom-small-text">${element.ano_fabricacao}</span>
                     <span class="card-text custom-small-text">/</span>
                     <span class="card-text anoModelo custom-small-text">${element.ano_modelo}</span>
-                    <p class="card-text text-right quilometragem">${element.quilometragem}</p>
+                    <p class="card-text text-right quilometragem">${element.quilometragem} km</p>
                     <div class="container text-center">
                         <button type="button" class="btn btn-primary btn-sm custom-small-text" onclick="veiculoMaisInformacoes()">Mais informações</button>
                     </div>
