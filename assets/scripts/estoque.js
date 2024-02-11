@@ -143,8 +143,8 @@ function limparFiltros() {
     anoInicial = 2010;
     $("#anoFinal").val("2024");
     anoFinal = 2024;
-    $("#valorMinimo").val("20000");
-    valorMinimo = 20000;
+    $("#valorMinimo").val("10000");
+    valorMinimo = 10000;
     $("#valorMaximo").val("250000");
     valorMaximo = 250000;
     $("#kmMinimo").val("0");
@@ -239,7 +239,11 @@ function filtroDeBusca() {
     veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
         return veiculo.ano_fabricacao >= anoInicial && veiculo.ano_fabricacao <= anoFinal;
     });
-    
+
+    //filtro de valor minimo e maximo
+    veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
+        return veiculo.valor >= valorMinimo && veiculo.valor <= valorMaximo;
+    });
 
 
 
