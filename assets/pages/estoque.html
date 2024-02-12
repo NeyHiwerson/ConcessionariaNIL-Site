@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estoque</title>
+    <script type="text/javascript" src="../plugins/jquery-3.7.1.min.js" defer></script>
     <script src="../scripts/estoque.js" defer></script>
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -75,7 +77,6 @@
                     data-value="Moto"
                     >Moto</a
                   >
-                  <!-- Adicione mais itens conforme necessário -->
                 </div>
               </div>
               <!-- Veiculo -->
@@ -107,7 +108,7 @@
               </div>
 
               <!-- Marca -->
-              <div class="dropdown">
+              <div class="dropdown" id="dropdownMarca">
                 <h6 class="text-dark custom-smaller-text pt-2 mb-0">Marca</h6>
                 <button
                   class="btn btn-light dropdown-toggle custom-smaller-text"
@@ -119,31 +120,7 @@
                 >
                   Todas
                 </button>
-                <div class="dropdown-menu" aria-labelledby="ddbMarca">
-                  <a
-                    class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text"
-                    href="#"
-                    data-value="Todas"
-                    >Todas</a
-                  >
-                  <a
-                    class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text"
-                    href="#"
-                    data-value="Nissan"
-                    >Nissan</a
-                  >
-                  <a
-                    class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text"
-                    href="#"
-                    data-value="Tesla"
-                    >Tesla</a
-                  >
-                  <a
-                    class="dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text"
-                    href="#"
-                    data-value="Fiat"
-                    >Fiat</a
-                  >
+                <div class="dropdown-menu" id="dropdownItensMenu" aria-labelledby="ddbMarca">
                   <!-- Adicione mais itens conforme necessário -->
                 </div>
               </div>
@@ -207,7 +184,7 @@
                         id="valorMinimo"
                         pattern="\d*"
                         oninput="formatarMoeda(this)"
-                        data-valor="22000"
+                        data-valor="10000"
                       />
                     </div>
                   </div>
@@ -271,7 +248,7 @@
                       id="kmMaximo"
                       min="0"
                       max="500000"
-                      value="80000"
+                      value="200000"
                       step="10000"
                     />
                   </div>
@@ -291,8 +268,8 @@
                 >
                   Todas as Cores
                 </button>
-                <div class="dropdown-menu" aria-labelledby="ddbCor">
-                  <a
+                <div class="dropdown-menu" id="dropdownItensMenuCores" aria-labelledby="ddbCor">
+                  <!-- <a
                     class="dropdown-item ddpItemCor text-dark custom-smaller-text"
                     href="#"
                     data-value="Todas as Cores"
@@ -309,7 +286,7 @@
                     href="#"
                     data-value="Azul"
                     >Azul</a
-                  >
+                  > -->
                   <!-- Adicione mais itens conforme necessário -->
                 </div>
               </div>

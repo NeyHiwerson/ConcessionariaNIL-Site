@@ -4,413 +4,59 @@ var veiculoUsado = true;
 var marcaDoVeiculo = "Todas";
 var anoInicial = 2010;
 var anoFinal = 2024;
-var valorMinimo = 20000;//buscar o menor valor no banco
+var valorMinimo = 10000;//buscar o menor valor no banco
 var valorMaximo = 250000;//buscar o maior valor no banco
 var kmMinima = 0;
-var kmMaxima = 500000;
+var kmMaxima = 200000;
 var corVeiculo = "Todas";
 const veiculosPorPagina = 12;
 var paginaAtual = 1;
-var veiculos = [
-    {
-        id_veiculo: 1,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 2,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 3,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 4,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 5,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 6,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 7,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 8,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 9,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 10,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 11,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 12,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 13,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 14,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 15,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 16,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 17,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 18,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 19,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 20,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 21,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 22,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 23,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 24,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 25,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    }   
-];
+var veiculos = [];
+var veiculosFiltrados = [];
+var veiculosFiltrados1 = [];
+var veiculosFiltrados2 = [];
+var veiculosFiltrados3 = [];
+var marcas = []
+const urlLocal = "http://localhost:3000";
+const complemento = "/estoque";
 
-$(document).ready(function () {
+$(document).ready(async function () {
+    // Consumir a API usando jQuery
+    try {
+        // Use o await para aguardar a conclusão da requisição AJAX
+        const data = await $.ajax({
+            url: urlLocal + complemento,
+            type: "GET",
+            dataType: "json"
+        });
+
+        // Certifique-se de que 'data' é um array
+        if (Array.isArray(data)) {
+            // Adicione os dados da API ao array 'veiculos'
+            veiculos = data;
+        } else {
+            console.error("Os dados da API não são um array.");
+        }
+        } catch (error) {
+        console.error("Erro na requisição da API:", error.statusText);
+        }
+
+
     $(".ddpItemTipoDeVeiculo").click(function () {
-        atualizarValor("#ddbTipoDeVeiculo", tipoDeVeiculo, $(this).data("value"));
+        atualizarValorTipoDeVeiculo("#ddbTipoDeVeiculo", tipoDeVeiculo, $(this).data("value"));
         tipoDeVeiculo = $(this).data("value");
-        //console.log("Tipo de Veículo:", tipoDeVeiculo);
         filtroDeBusca();
     });
 
     $("#ckbNovo, #ckbUsado").change(function () {
         veiculoNovo = $("#ckbNovo").prop("checked");
         veiculoUsado = $("#ckbUsado").prop("checked");
-        //console.log("Checkbox Novo " + (veiculoNovo ? "Marcado" : "Desmarcado"));
-        //console.log(veiculoNovo)
-        //console.log("Checkbox Novo " + (veiculoUsado ? "Marcado" : "Desmarcado"));
-        //console.log(veiculoUsado)
         filtroDeBusca();
     });
 
     $(".ddpItemMarcaDoVeiculo").click(function () {
         atualizarValor("#ddbMarca", marcaDoVeiculo, $(this).data("value"));
         marcaDoVeiculo = $(this).data("value");
-        //console.log("Marca do Veículo:", marcaDoVeiculo);
         filtroDeBusca();
     });
 
@@ -419,7 +65,7 @@ $(document).ready(function () {
     $("#formValor").submit(function (event) {
         event.preventDefault();
         capturarValores();
-    });    
+    });
 
     $("#valorMinimo, #valorMaximo").on("input", function () {
         formatarMoeda(this);
@@ -437,10 +83,17 @@ $(document).ready(function () {
         event.preventDefault();
         atualizarValor("#ddbCor", corVeiculo, $(this).data("value"));
         corVeiculo = $(this).data("value");
-        //console.log("Cor do Veículo:", corVeiculo);
         filtroDeBusca();
     });
+
+
+    renderVeiculos(veiculos);
 });
+
+function atualizarValorTipoDeVeiculo(elementoID, variavel, valor) {
+    $(elementoID).html(valor);
+    variavel = valor;
+}
 
 function atualizarValor(elementoID, variavel, valor) {
     $(elementoID).html(valor);
@@ -450,7 +103,7 @@ function atualizarValor(elementoID, variavel, valor) {
 function capturarValoresAno() {
     anoInicial = $("#anoInicial").val();
     anoFinal = $("#anoFinal").val();
-    filtroDeBusca();    
+    filtroDeBusca();
 }
 
 function capturarValores() {
@@ -471,8 +124,8 @@ function formatarMoeda(input) {
 }
 
 function capturarValoresKm() {
-    kmMinima = $("#kmMinimo").val();
-    kmMaxima = $("#kmMaximo").val();    
+    kmMinima = parseInt($("#kmMinimo").val()) || 0;
+    kmMaxima = parseInt($("#kmMaximo").val()) || 200000;
     filtroDeBusca();
 }
 
@@ -490,9 +143,9 @@ function limparFiltros() {
     anoInicial = 2010;
     $("#anoFinal").val("2024");
     anoFinal = 2024;
-    $("#valorMinimo").val("20000");
-    valorMinimo = 20000;
-    $("#valorMaximo").val("250000");    
+    $("#valorMinimo").val("10000");
+    valorMinimo = 10000;
+    $("#valorMaximo").val("250000");
     valorMaximo = 250000;
     $("#kmMinimo").val("0");
     kmMinima = 0;
@@ -518,9 +171,123 @@ function filtroDeBusca() {
         kmMaxima: kmMaxima,
         corVeiculo: corVeiculo
     };
+    // Filtrar os veículos com base nos filtros
 
-    console.log(filtros);
+    //filtro tipo de veiculo
+    if (tipoDeVeiculo === "Todos") {
+        // Se "todos" for selecionado, retornar todos os veículos
+        veiculosFiltrados = veiculos;
+    } else {
+        // Filtrar por tipo
+        veiculosFiltrados = veiculos.filter(function(veiculo) {
+            return veiculo.tipo == tipoDeVeiculo.toLowerCase();
+        });
+    }
+
+    //filtro veiculo novo e usado
+    if (veiculoNovo && veiculoUsado) {
+        // Filtrar por tipo
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem >= 0;
+        });
+    }else if(veiculoNovo && !veiculoUsado){
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem == 0;
+        });
+    }else if(!veiculoNovo && veiculoUsado){
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem > 0;
+        });
+    }else{
+        veiculosFiltrados = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.quilometragem < 0;
+        });
+    }
+
+    //neste ponto eu preciso filtrar as marcas e inserir as opçoes no dropdown
+    var marcasUnicas = ['Todas',...new Set(veiculosFiltrados.map(veiculo => veiculo.marca))];
+    var dropdownMarca = $("#dropdownItensMenu");
+    dropdownMarca.html('');
+    marcasUnicas.forEach(function (marca) {
+        var option = $('<a>', {
+          class: "dropdown-item ddpItemMarcaDoVeiculo text-dark custom-smaller-text",
+          href: "#",
+          "data-value": marca,
+          text: marca
+        });
+
+        dropdownMarca.append(option);
+      });
+
+      dropdownMarca.find(".ddpItemMarcaDoVeiculo").click(function () {
+        var marcaSelecionada = $(this).data("value");
+        $("#ddbMarca").text(marcaSelecionada);
+        marcaDoVeiculo = marcaSelecionada;
+        filtroDeBusca();
+      });
+
+    //filtro de marca de veiculo
+    if (marcaDoVeiculo == "Todas") {
+        veiculosFiltrados1 = [...veiculosFiltrados];
+    }else{
+        veiculosFiltrados1 = veiculosFiltrados.filter(function(veiculo) {
+            return veiculo.marca.toLowerCase() == marcaDoVeiculo.toLowerCase();
+        });
+    }
+
+    //filtro de ano de fabricação
+    veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
+        return veiculo.ano_modelo >= anoInicial && veiculo.ano_modelo <= anoFinal;
+    });
+
+     //filtro de valor minimo e maximo
+    veiculosFiltrados1 = veiculosFiltrados1.filter(function(veiculo) {
+        return veiculo.valor >= valorMinimo && veiculo.valor <= valorMaximo;
+    });
+
+    //filtro de quilometragem minima e maxima
+    console.log('kmMinimo: ',kmMinima );
+    console.log('kmMaxima: ',kmMaxima );
+    veiculosFiltrados2 = veiculosFiltrados1.filter(function(veiculo) {
+        return veiculo.quilometragem >= kmMinima && veiculo.quilometragem <= kmMaxima;
+    });
+
+    //filtro de cor
+    var coresUnicas = ['Todas',...new Set(veiculosFiltrados2.map(veiculo => veiculo.cor))];
+    var dropdownCor = $("#dropdownItensMenuCores");
+    dropdownCor.html('');
+    coresUnicas.forEach(function (cor) {
+        var option = $('<a>', {
+          class: "dropdown-item ddpItemCor text-dark custom-smaller-text",
+          href: "#",
+          "data-value": cor,
+          text: cor
+        });
+
+        dropdownCor.append(option);
+    })
+    dropdownCor.find(".ddpItemCor").click(function () {
+        var corSelecionada = $(this).data("value");
+        $("#ddbCor").text(corSelecionada);
+        corVeiculo = corSelecionada;
+        filtroDeBusca();
+    })
+    if (corVeiculo == "Todas") {
+        veiculosFiltrados3 = [...veiculosFiltrados2];
+    }else{
+        veiculosFiltrados3 = veiculosFiltrados2.filter(function(veiculo) {
+            return veiculo.cor.toLowerCase() == corVeiculo.toLowerCase();
+        });
+    }
+
+
+    // Exibir os veículos filtrados
+    console.log(veiculosFiltrados3);
+
+    renderVeiculos(veiculosFiltrados3);
+
 }
+
 function renderVeiculos(veiculos) {
 
     $("#container-veiculos").empty();
@@ -535,16 +302,16 @@ function renderVeiculos(veiculos) {
             <div class="card h-100">
                 <img src="${element.link_1}" class="card-img-top" alt="imagem do ">
                 <div class="card-body">
-                    <h5 class="card-title">${element.nome}</h5>
-                    <span class="card-text potencia custom-small-text">${element.motor}</span>                                
+                    <h5 class="card-title">${element.modelo}</h5>
+                    <span class="card-text potencia custom-small-text">${element.motor}</span>
                     <span class="card-text motor custom-small-text">${element.valvulas}</span>
                     <span class="card-text cambio custom-small-text">${element.combustivel}</span>
                     <span class="card-text cambio custom-small-text">${element.cambio}</span>
                     <p class="card-text valor custom-medium-text pt-3 mb-1">Valor: ${element.valor}</p>
-                    <span class="card-text anoModelo custom-small-text">${element.ano}</span>
+                    <span class="card-text anoModelo custom-small-text">${element.ano_fabricacao}</span>
                     <span class="card-text custom-small-text">/</span>
-                    <span class="card-text anoModelo custom-small-text">${element.modelo}</span>
-                    <p class="card-text text-right quilometragem">${element.quilometragem}</p>
+                    <span class="card-text anoModelo custom-small-text">${element.ano_modelo}</span>
+                    <p class="card-text text-right quilometragem">${element.quilometragem} km</p>
                     <div class="container text-center">
                         <button type="button" class="btn btn-primary btn-sm custom-small-text" onclick="veiculoMaisInformacoes()">Mais informações</button>
                     </div>
@@ -556,15 +323,17 @@ function renderVeiculos(veiculos) {
             </div>
         </div>
         `;
-      
+
         $("#container-veiculos").append(cardHtml);
     });
-    
+
     renderizarBotoes();
 
 }
 
 function renderizarBotoes() {
+    $("#container-buttons").empty();
+
     const totalPages = Math.ceil(veiculos.length / veiculosPorPagina);
 
     // Botão Anterior
@@ -573,7 +342,7 @@ function renderizarBotoes() {
     // Botão Próximo
     const btnProximo = `<button type="button" id="btnProx" class="btn btn-primary" onclick="proximaPagina()">Próximo</button>`;
 
-    // Adicionar os botões à sua página    
+    // Adicionar os botões à sua página
     $("#container-buttons").append(`<div class="text-center">${btnAnterior} ${btnProximo}</div>`);
 
     $("#btnAnt").prop("enabled", true);
@@ -592,20 +361,17 @@ function renderizarBotoes() {
  function paginaAnterior() {
     if (paginaAtual > 1) {
         paginaAtual--;
-        renderVeiculos();
+        renderVeiculos(veiculos);
     }
-};
+}
 
 function proximaPagina() {
     const totalPages = Math.ceil(veiculos.length / veiculosPorPagina);
     if (paginaAtual < totalPages) {
         paginaAtual++;
-        renderVeiculos();
+        renderVeiculos(veiculos);
     }
-};
-
-renderVeiculos(veiculos);
-
+}
 
 function veiculoMaisInformacoes() {
     // Lógica para mais informações do veículo
