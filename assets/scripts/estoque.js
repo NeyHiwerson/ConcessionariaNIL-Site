@@ -17,7 +17,7 @@ var veiculosFiltrados1 = [];
 var veiculosFiltrados2 = [];
 var veiculosFiltrados3 = [];
 var marcas = []
-const urlLocal = "http://localhost:3000";
+const urlLocal = "https://wild-lion-khakis.cyclic.app";
 const complemento = "/estoque";
 
 $(document).ready(async function () {
