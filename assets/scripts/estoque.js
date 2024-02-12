@@ -252,13 +252,39 @@ function filtroDeBusca() {
         return veiculo.quilometragem >= kmMinima && veiculo.quilometragem <= kmMaxima;
     });
 
+    //filtro de cor
+    var coresUnicas = ['Todas',...new Set(veiculosFiltrados2.map(veiculo => veiculo.cor))];
+    var dropdownCor = $("#dropdownItensMenuCores");
+    dropdownCor.html('');
+    coresUnicas.forEach(function (cor) {
+        var option = $('<a>', {
+          class: "dropdown-item ddpItemCor text-dark custom-smaller-text",
+          href: "#",
+          "data-value": cor,
+          text: cor
+        });
 
+        dropdownCor.append(option);
+    })
+    dropdownCor.find(".ddpItemCor").click(function () {
+        var corSelecionada = $(this).data("value");
+        $("#ddbCor").text(corSelecionada);
+        corVeiculo = corSelecionada;
+        filtroDeBusca();
+    })
+    if (corVeiculo == "Todas") {
+        veiculosFiltrados3 = [...veiculosFiltrados2];
+    }else{
+        veiculosFiltrados3 = veiculosFiltrados2.filter(function(veiculo) {
+            return veiculo.cor.toLowerCase() == corVeiculo.toLowerCase();
+        });
+    }
 
 
     // Exibir os veículos filtrados
-    console.log(veiculosFiltrados2);
+    console.log(veiculosFiltrados3);
 
-    renderVeiculos(veiculosFiltrados2);
+    renderVeiculos(veiculosFiltrados3);
 
 }
 
