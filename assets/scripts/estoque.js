@@ -7,7 +7,7 @@ var anoFinal = 2024;
 var valorMinimo = 10000;//buscar o menor valor no banco
 var valorMaximo = 250000;//buscar o maior valor no banco
 var kmMinima = 0;
-var kmMaxima = 500000;
+var kmMaxima = 200000;
 var corVeiculo = "Todas";
 const veiculosPorPagina = 12;
 var paginaAtual = 1;
@@ -124,8 +124,8 @@ function formatarMoeda(input) {
 }
 
 function capturarValoresKm() {
-    kmMinima = $("#kmMinimo").val();
-    kmMaxima = $("#kmMaximo").val();
+    kmMinima = parseInt($("#kmMinimo").val()) || 0;
+    kmMaxima = parseInt($("#kmMaximo").val()) || 200000;
     filtroDeBusca();
 }
 
@@ -245,14 +245,20 @@ function filtroDeBusca() {
         return veiculo.valor >= valorMinimo && veiculo.valor <= valorMaximo;
     });
 
+    //filtro de quilometragem minima e maxima
+    console.log('kmMinimo: ',kmMinima );
+    console.log('kmMaxima: ',kmMaxima );
+    veiculosFiltrados2 = veiculosFiltrados1.filter(function(veiculo) {
+        return veiculo.quilometragem >= kmMinima && veiculo.quilometragem <= kmMaxima;
+    });
 
 
 
 
     // Exibir os veículos filtrados
-    console.log(veiculosFiltrados1);
+    console.log(veiculosFiltrados2);
 
-    renderVeiculos(veiculosFiltrados1);
+    renderVeiculos(veiculosFiltrados2);
 
 }
 
