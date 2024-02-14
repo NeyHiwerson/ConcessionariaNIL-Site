@@ -389,3 +389,8 @@ function veiculoMaisInformacoes(id_veiculo) {
     sessionStorage.setItem('id_veiculo', id_veiculo);
     window.location.href = 'http://127.0.0.1:5500/assets/pages/carro.html';
 }
+
+function toggleMenu() {
+    var sideMenu = document.getElementById("sidemenu");
+    sideMenu.classList.toggle("show");
+}
