@@ -32,7 +32,9 @@ $(document).ready(async function () {
      // Atualiza as imagens do carousel
      const carousel = $("#carouselExample");
      const carouselItens = $("#carouselItens");
+     const carouselIndicators = $("#carouselIndicators");
      carouselItens.empty();
+     carouselIndicators.empty();
      for (let i = 0; i < 10; i++) {
         const linkImagem = data[`link_${i + 1}`];
         if (linkImagem !== null && linkImagem !== undefined) {
@@ -42,24 +44,34 @@ $(document).ready(async function () {
                     <img src="${linkImagem}" class="d-block w-100 img-fluid" alt="Imagem ${i + 1}" style="max-width: 1110px; max-height: 624.38px; object-fit: cover;">
                 </div>
             `;
+            const indicatorElement = `
+                <li data-target="#carouselExample" data-slide-to="${i}" class="${activeClass}"></li>`
+
             carouselItens.append(imageElement);
+            carouselIndicators.append(indicatorElement);
         }
     }
 
-     // Atualiza as informações técnicas na tabela
-     const infoTable = $("#infoTable");
-     const infoRows = [
-         { label: "Marca", value: data.marca },
-         { label: "Modelo", value: data.modelo },
-         // Adicione outras linhas conforme necessário
-     ];
+    const infoTable = $("#infoTable");
+    const dataKeys = Object.keys(data);
+    infoTable.empty();
 
-     infoRows.forEach(row => {
-         const rowElement = `<tr>
-                                 <td>${row.label}: <span>${row.value}</span></td>
-                             </tr>`;
-         infoTable.append(rowElement);
-     });
+    for (let i = 0; i < dataKeys.length; i += 2) {
+        const key1 = dataKeys[i];
+        const key2 = dataKeys[i + 1];
+        const value1 = data[key1];
+        const value2 = data[key2];
+
+        if (value1 !== null && value1 !== undefined && !key1.startsWith("link_")
+         && value2 !== null && value2 !== undefined && !key2.startsWith("link_")) {
+            const rowElement1 = `
+                <tr>
+                    <td>${key1.charAt(0).toUpperCase() + key1.slice(1)}: <span>${value1}</span></td>
+                    <td>${key2.charAt(0).toUpperCase() + key2.slice(1)}: <span>${value2}</span></td>
+                </tr>`;
+            infoTable.append(rowElement1);
+        }
+    }
 
 });
 function toggleMenu() {
