@@ -42,3 +42,8 @@ const urlLocal = "https://wild-lion-khakis.cyclic.app";
         });
       });
     });
+
+    function toggleMenu() {
+      var sideMenu = document.getElementById("sidemenu");
+      sideMenu.classList.toggle("show");
+  }
