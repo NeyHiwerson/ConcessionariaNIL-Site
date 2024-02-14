@@ -304,6 +304,12 @@ function renderVeiculos(veiculos) {
 
     veiculosDaPagina.forEach(element => {
         var cardHtml = `
+        <style>
+        /* Estilo para a fonte Lato */
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        </style>
         <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
             <div class="card h-100">
                 <img src="${element.link_1}" class="card-img-top" alt="imagem do ">
