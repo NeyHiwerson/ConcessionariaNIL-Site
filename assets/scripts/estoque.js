@@ -123,6 +123,12 @@ function formatarMoeda(input) {
     input.value = new Intl.NumberFormat('pt-BR', options).format(valor / 100);
 }
 
+function formatarValor(valor) {
+    var valorFormatado = valor.replace(/\D/g, '');
+    var options = { style: 'currency', currency: 'BRL' };
+    return new Intl.NumberFormat('pt-BR', options).format(valorFormatado / 100);
+}
+
 function capturarValoresKm() {
     kmMinima = parseInt($("#kmMinimo").val()) || 0;
     kmMaxima = parseInt($("#kmMaximo").val()) || 200000;
@@ -307,13 +313,13 @@ function renderVeiculos(veiculos) {
                     <span class="card-text motor custom-small-text">${element.valvulas}</span>
                     <span class="card-text cambio custom-small-text">${element.combustivel}</span>
                     <span class="card-text cambio custom-small-text">${element.cambio}</span>
-                    <p class="card-text valor custom-medium-text pt-3 mb-1">Valor: ${element.valor}</p>
+                    <p class="card-text valor custom-medium-text pt-1 mb-1">${formatarValor(element.valor)}</p>
                     <span class="card-text anoModelo custom-small-text">${element.ano_fabricacao}</span>
                     <span class="card-text custom-small-text">/</span>
                     <span class="card-text anoModelo custom-small-text">${element.ano_modelo}</span>
                     <p class="card-text text-right quilometragem">${element.quilometragem} km</p>
                     <div class="container text-center">
-                        <button type="button" class="btn btn-primary btn-sm custom-small-text" onclick="veiculoMaisInformacoes()">Mais informações</button>
+                        <button type="button" class="btn btn-primary btn-sm custom-small-text" onclick="veiculoMaisInformacoes(${element.id_veiculo})">Mais informações</button>
                     </div>
                     <hr class="my-3"> <!-- Linha separadora -->
                     <i class="fa-solid fa-location-dot"></i>
@@ -373,7 +379,7 @@ function proximaPagina() {
     }
 }
 
-function veiculoMaisInformacoes() {
-    // Lógica para mais informações do veículo
-    alert("Mais informações do veículo");
+function veiculoMaisInformacoes(id_veiculo) {
+    sessionStorage.setItem('id_veiculo', id_veiculo);
+    window.location.href = 'http://127.0.0.1:5500/assets/pages/carro.html';
 }
