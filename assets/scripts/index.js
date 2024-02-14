@@ -1,108 +1,34 @@
-function toggleMenu() {
-    var sideMenu = document.getElementById("sidemenu");
-    sideMenu.classList.toggle("show");
-}
+const urlLocal = "https://wild-lion-khakis.cyclic.app";
+const complemento = "/estoque";
+var veiculos = [];
 
-var veiculos = [
-    {
-        id_veiculo: 1,
-        nome: "Nissan Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57.000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 2,
-        nome: "BMW 320i",
-        motor: "2.0 Turbo",
-        valvulas: "16V",
-        combustivel: "Gasolina",
-        cambio: "Automático",
-        valor: "230.000",
-        quilometragem: "0",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2020",
-        modelo: "2020",
-        link_1: 
-        "https://carroscomcamanzi.com.br/wp-content/uploads/2019/09/BMW-3-Series-2019-1600-06.jpg"
-    },
-    {
-        id_veiculo: 3,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57.000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 4,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57.000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 5,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57.000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-    {
-        id_veiculo: 6,
-        nome: "Versa",
-        motor: "1.0",
-        valvulas: "12V",
-        combustivel: "Flex",
-        cambio: "Manual",
-        valor: "40000",
-        quilometragem: "57.000",
-        cidade: "Joinville",
-        estado: "SC",
-        ano: "2016",
-        modelo: "2016",
-        link_1: "https://carroecarros.com.br/wp-content/uploads/2015/04/novo-Nissan-Versa-2016-2.jpg"
-    },
-];
+$(document).ready(async function() {
+    try {
+        // Use o await para aguardar a conclusão da requisição AJAX
+        const data = await $.ajax({
+            url: urlLocal + complemento,
+            type: "GET",
+            dataType: "json"
+        });
 
-$(document).ready(function() {
+        // Certifique-se de que 'data' é um array
+        if (Array.isArray(data)) {
+            // Adicione os dados da API ao array 'veiculos'
+            veiculos = data;
+        } else {
+            console.error("Os dados da API não são um array.");
+        }
+        } catch (error) {
+        console.error("Erro na requisição da API:", error.statusText);
+        }
 
-    veiculos.forEach(element => {
+    veiculos.sort((a, b) => b.valor - a.valor); // Ordena do maior para o menor
+    const top6Veiculos = veiculos.slice(0, 6);
+
+    top6Veiculos.forEach(element => {
         var cardHtml = `
         <style>
-            .custom-btn {
+        .custom-btn {
             border: 1px solid #FF1616;
             background-color: #fff;
             color: #FF1616;
@@ -123,38 +49,50 @@ $(document).ready(function() {
         </style>
 
         <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
-            <div class="card h-100">
-                <img src="${element.link_1}" class="card-img-top custom-image" alt="imagem do ">
-                <div class="card-body">
-                    <h5 class="card-title">${element.nome}</h5>
-                    <span class="card-text potencia custom-small-text">${element.motor}</span>                                
-                    <span class="card-text motor custom-small-text">${element.valvulas}</span>
-                    <span class="card-text cambio custom-small-text">${element.combustivel}</span>
-                    <span class="card-text cambio custom-small-text">${element.cambio}</span>
-                    <br>
-                    <span class="card-text valor custom-medium-text pt-3 mb-1">Valor: ${element.valor}</span>
-                    <br>
-                    <span class="card-text anoModelo custom-small-text">${element.ano}</span>
-                    <span>/</span>
-                    <span class="card-text anoModelo custom-small-text">${element.modelo}</span>
-                    <p class="card-text quilometragem text-right">${element.quilometragem} km</p>
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-sm custom-btn custom-small-text" onclick="veiculoMaisInformacoes()">Mais informações</button>
-                    </div>
-
-                    <hr class="my-3"> <!-- Linha separadora -->
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span class="card-text cidadeDoVeiculo custom-small-text">${element.cidade}</span>
-                    <span class="card-text estadoDoVeiculo custom-small-text">${element.estado}</span>
-                </div>
-            </div>
+        <div class="card h-100">
+        <img src="${element.link_1}" class="card-img-top custom-image" alt="imagem do ">
+        <div class="card-body">
+        <h5 class="card-title">${element.modelo}</h5>
+        <span class="card-text potencia custom-small-text">${element.motor}</span>
+        <span class="card-text motor custom-small-text">${element.valvulas}</span>
+        <span class="card-text cambio custom-small-text">${element.combustivel}</span>
+        <span class="card-text cambio custom-small-text">${element.cambio}</span>
+        <br>
+        <span class="card-text valor custom-medium-text pt-3 mb-1">${formatarValor(element.valor)}</span>
+        <br>
+        <span class="card-text anoModelo custom-small-text">${element.ano_fabricacao}</span>
+        <span>/</span>
+        <span class="card-text anoModelo custom-small-text">${element.ano_modelo}</span>
+        <p class="card-text quilometragem text-right">${element.quilometragem} km</p>
+        <div class="container text-center">
+        <button type="button" class="btn btn-sm custom-btn custom-small-text" onclick="veiculoMaisInformacoes(${element.id_veiculo})">Mais informações</button>
         </div>
-        `;
-    
-        $("#container-veiculos").append(cardHtml);
+
+        <hr class="my-3"> <!-- Linha separadora -->
+        <i class="fa-solid fa-location-dot"></i>
+        <span class="card-text cidadeDoVeiculo custom-small-text">${element.cidade}</span>
+        <span class="card-text estadoDoVeiculo custom-small-text">${element.estado}</span>
+        </div>
+            </div>
+            </div>
+            `;
+
+            $("#container-veiculos").append(cardHtml);
     });
 });
-function veiculoMaisInformacoes() {
-    // Lógica para mais informações do veículo
-    alert("Mais informações do veículo");
+
+function toggleMenu() {
+    var sideMenu = document.getElementById("sidemenu");
+    sideMenu.classList.toggle("show");
+}
+
+function veiculoMaisInformacoes(id_veiculo) {
+        sessionStorage.setItem('id_veiculo', id_veiculo);
+        window.location.href = 'http://127.0.0.1:5500/assets/pages/carro.html';
+}
+
+function formatarValor(valor) {
+    var valorFormatado = valor.replace(/\D/g, '');
+    var options = { style: 'currency', currency: 'BRL' };
+    return new Intl.NumberFormat('pt-BR', options).format(valorFormatado / 100);
 }
