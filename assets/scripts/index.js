@@ -4,16 +4,13 @@ var veiculos = [];
 
 $(document).ready(async function() {
     try {
-        // Use o await para aguardar a conclusão da requisição AJAX
         const data = await $.ajax({
             url: urlLocal + complemento,
             type: "GET",
             dataType: "json"
         });
 
-        // Certifique-se de que 'data' é um array
         if (Array.isArray(data)) {
-            // Adicione os dados da API ao array 'veiculos'
             veiculos = data;
         } else {
             console.error("Os dados da API não são um array.");
@@ -22,7 +19,7 @@ $(document).ready(async function() {
         console.error("Erro na requisição da API:", error.statusText);
         }
 
-    veiculos.sort((a, b) => b.valor - a.valor); // Ordena do maior para o menor
+    veiculos.sort((a, b) => b.valor - a.valor);
     const top6Veiculos = veiculos.slice(0, 6);
 
     top6Veiculos.forEach(element => {
