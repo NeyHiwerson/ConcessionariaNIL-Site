@@ -10,9 +10,6 @@
   font-size: 1.2rem;
 }
 
-*{
-    
-}
 
 html{
     scroll-behavior: smooth;
@@ -83,6 +80,7 @@ html{
     display: none;
     cursor: pointer;
   }
+  
 
   /*footer*/
 footer {
@@ -628,6 +626,7 @@ footer {
           background-color: black;
           text-align: center;
           align-items: center;
+          z-index: 1;
       }
     
       #sidemenu.show {
