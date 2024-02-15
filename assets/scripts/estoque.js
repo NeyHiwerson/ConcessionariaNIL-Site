@@ -88,6 +88,7 @@ $(document).ready(async function () {
 
 
     renderVeiculos(veiculos);
+    limparFiltros();
 });
 
 function atualizarValorTipoDeVeiculo(elementoID, variavel, valor) {
@@ -309,6 +310,18 @@ function renderVeiculos(veiculos) {
         body {
             font-family: 'Lato', sans-serif;
         }
+        .custom-btn {
+            border: 1px solid #FF1616;
+            background-color: #fff;
+            color: #FF1616;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .custom-btn:hover {
+            background-color: #FF1616;
+            color: #fff;
+            border: none;  
+        }
         </style>
         <div class="custom-col col-xs-12 col-md-6 col-lg-4 pt-2 px-1">
             <div class="card h-100">
@@ -325,7 +338,7 @@ function renderVeiculos(veiculos) {
                     <span class="card-text anoModelo custom-small-text">${element.ano_modelo}</span>
                     <p class="card-text text-right quilometragem">${element.quilometragem} km</p>
                     <div class="container text-center">
-                        <button type="button" class="btn btn-primary btn-sm custom-small-text" onclick="veiculoMaisInformacoes(${element.id_veiculo})">Mais informações</button>
+                        <button type="button" class="btn btn-primary btn-sm custom-small-text custom-btn" onclick="veiculoMaisInformacoes(${element.id_veiculo})">Mais informações</button>
                     </div>
                     <hr class="my-3"> <!-- Linha separadora -->
                     <i class="fa-solid fa-location-dot"></i>
@@ -349,10 +362,10 @@ function renderizarBotoes() {
     const totalPages = Math.ceil(veiculos.length / veiculosPorPagina);
 
     // Botão Anterior
-    const btnAnterior = `<button type="button" id="btnAnt" class="btn btn-primary" onclick="paginaAnterior()">Anterior</button>`;
+    const btnAnterior = `<button type="button" id="btnAnt" class="btn btn-alert custom-btn" onclick="paginaAnterior()">Anterior</button>`;
 
     // Botão Próximo
-    const btnProximo = `<button type="button" id="btnProx" class="btn btn-primary" onclick="proximaPagina()">Próximo</button>`;
+    const btnProximo = `<button type="button" id="btnProx" class="btn btn-alert custom-btn" onclick="proximaPagina()">Próximo</button>`;
 
     // Adicionar os botões à sua página
     $("#container-buttons").append(`<div class="text-center">${btnAnterior} ${btnProximo}</div>`);
