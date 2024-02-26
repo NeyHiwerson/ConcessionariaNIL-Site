@@ -5,9 +5,9 @@ var marcaDoVeiculo = "Todas";
 var anoInicial = 2010;
 var anoFinal = 2024;
 var valorMinimo = 10000;//buscar o menor valor no banco
-var valorMaximo = 250000;//buscar o maior valor no banco
+var valorMaximo = 400000;//buscar o maior valor no banco
 var kmMinima = 0;
-var kmMaxima = 200000;
+var kmMaxima = 300000;
 var corVeiculo = "Todas";
 const veiculosPorPagina = 12;
 var paginaAtual = 1;
@@ -132,7 +132,7 @@ function formatarValor(valor) {
 
 function capturarValoresKm() {
     kmMinima = parseInt($("#kmMinimo").val()) || 0;
-    kmMaxima = parseInt($("#kmMaximo").val()) || 200000;
+    kmMaxima = parseInt($("#kmMaximo").val()) || 300000;
     filtroDeBusca();
 }
 
@@ -152,12 +152,12 @@ function limparFiltros() {
     anoFinal = 2024;
     $("#valorMinimo").val("10000");
     valorMinimo = 10000;
-    $("#valorMaximo").val("250000");
-    valorMaximo = 250000;
+    $("#valorMaximo").val("400000");
+    valorMaximo = 400000;
     $("#kmMinimo").val("0");
     kmMinima = 0;
-    $("#kmMaximo").val("200000");
-    kmMaxima = 200000;
+    $("#kmMaximo").val("300000");
+    kmMaxima = 300000;
     $("#ddbCor").text("Todas");
     corVeiculo = "Todas";
 
