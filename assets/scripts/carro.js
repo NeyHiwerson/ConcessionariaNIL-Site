@@ -37,7 +37,7 @@ $(document).ready(async function () {
      carouselIndicators.empty();
      for (let i = 0; i < 10; i++) {
         const linkImagem = data[`link_${i + 1}`];
-        if (linkImagem !== null && linkImagem !== undefined) {
+        if (linkImagem !== null && linkImagem !== undefined && linkImagem.trim() !== '') {
             const activeClass = i === 0 ? "active" : "";
             const imageElement = `
                 <div class="carousel-item ${activeClass}">
