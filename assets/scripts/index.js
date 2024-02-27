@@ -85,7 +85,7 @@ function toggleMenu() {
 
 function veiculoMaisInformacoes(id_veiculo) {
         sessionStorage.setItem('id_veiculo', id_veiculo);
-        window.location.href = './assets/pages/carro.html';
+        window.location.href = 'assets/pages/carro.html';
 }
 
 function formatarValor(valor) {
