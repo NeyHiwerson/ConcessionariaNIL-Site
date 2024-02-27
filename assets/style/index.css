@@ -1,8 +1,13 @@
 *{
     margin: 0;
     padding: 0;
-    
+
     box-sizing: border-box;
+}
+
+.whatsapp-icon:hover{
+  transform: scale(1.2);
+  transition: 0.4s;
 }
 
 html{
@@ -73,7 +78,7 @@ nav ul li a:hover {
 nav ul li a:hover::after{
     width: 100%;
 }
- 
+
 footer {
     background-color: black;
     color: #fff;
@@ -82,7 +87,7 @@ footer {
     height: 270px;
     align-items: center;
   }
-  
+
   .rodape-conteiner {
     display: flex;
     justify-content: center;
@@ -90,7 +95,7 @@ footer {
     margin: 0 auto;
     align-items: center;
   }
-  
+
   .rodape-secao {
     text-align: center;
     margin-right: 30px;
@@ -104,18 +109,18 @@ footer {
   .rodape-secao img{
     margin-left: 100px;
   }
-  
+
   footer h3 {
     display: inline-block;
     font-size: 17px;
     text-transform: uppercase;
     margin-bottom: 15px;
   }
-  
+
   footer a{
     color: #fff;
     text-decoration: none;
-    
+
   }
 
   footer a:hover{
@@ -127,16 +132,16 @@ footer {
     list-style: none;
     padding: 0;
   }
-  
+
   li {
     margin: 10px 0;
   }
-  
+
   .rodape-conteiner span {
     margin-right: 5px;
     font-size: 14px;
   }
-  
+
   .imagem {
     max-height: 154px;
     width: auto;
@@ -213,28 +218,22 @@ p{
     bottom: 20px; /* Distância do fundo da janela do navegador */
     right: 20px; /* Distância da borda direita da janela do navegador */
   }
-  
-  .whatsapp-icon img {
+
+.whatsapp-icon img {
     width: 100px; /* Largura do ícone do WhatsApp */
     height: auto;
   }
-
-  .whatsapp-icon:hover{
-    transform: scale(1.2);
-    transition: 0.4s;
-  }
-
 
 @media screen and (max-width: 1800px) {
   .logo {
     height: 95px;
     padding-left: 330px;
   }
-  
+
   .Home{
     margin-right: 320px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -248,11 +247,11 @@ p{
     height: 95px;
     padding-left: 330px;
   }
-  
+
   .Home{
     margin-right: 220px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -266,11 +265,11 @@ p{
     height: 95px;
     padding-left: 230px;
   }
-  
+
   .Home{
     margin-right: 220px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -284,11 +283,11 @@ p{
     height: 95px;
     padding-left: 230px;
   }
-  
+
   .Home{
     margin-right: 220px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -302,11 +301,11 @@ p{
     height: 95px;
     padding-left: 150px;
   }
-  
+
   .Home{
     margin-right: 180px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -320,11 +319,11 @@ p{
     height: 95px;
     padding-left: 150px;
   }
-  
+
   .Home{
     margin-right: 100px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -338,11 +337,11 @@ p{
     height: 95px;
     padding-left: 100px;
   }
-  
+
   .Home{
     margin-right: 100px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -356,11 +355,11 @@ p{
     height: 95px;
     padding-left: 100px;
   }
-  
+
   .Home{
     margin-right: 50px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -412,11 +411,11 @@ nav ul li{
     height: 95px;
     padding-left: 30px;
   }
-  
+
   .Home{
     margin-right: 50px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -430,11 +429,11 @@ nav ul li{
     height: 95px;
     padding-left: 30px;
   }
-  
+
   .Home{
     margin-right: 30px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
@@ -446,7 +445,7 @@ nav ul li{
 @media screen and (max-width: 830px) {
   .rodape-secao li{
     margin-right: 30px;
-  } 
+  }
 
   .rodape-secao img{
     margin-left: 30px;
@@ -458,11 +457,11 @@ nav ul li{
     height: 95px;
     padding-left: 10px;
   }
-  
+
   .Home{
     margin-right: 10px;
   }
-  
+
   nav ul li{
       display: inline-block;
       list-style: none;
