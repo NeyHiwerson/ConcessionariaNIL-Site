@@ -62,8 +62,8 @@ $(document).ready(async function () {
         const value1 = data[key1];
         const value2 = data[key2];
 
-        if ( value1 !== null && value1 !== undefined && !key1.startsWith("link_")
-         && value2 !== null && value2 !== undefined && !key2.startsWith("link_")) {
+        if ( value1 !== "" && value1 !== null && value1 !== undefined && !key1.startsWith("link_")
+        && value2 !== "" && value2 !== null && value2 !== undefined && !key2.startsWith("link_")) {
             const rowElement1 = `
                 <tr>
                     <td>${key1.charAt(0).toUpperCase() + key1.slice(1)}: <span>${value1}</span></td>
